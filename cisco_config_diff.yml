@@ -12,7 +12,7 @@
     - name: print output
       debug:
         var: output.stdout_lines
-
+#
 #    - name: perform show run
 #      ios_command:
 #        commands:
