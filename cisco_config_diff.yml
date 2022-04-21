@@ -1,0 +1,25 @@
+---
+- hosts: routers
+  become: yes
+  gather_facts: false
+
+  tasks:
+    - name: check the startup-config against the running-config
+      cisco.ios.ios_config:
+        diff_against: startup
+      register: output
+
+    - name: print output
+      debug:
+        var: output.stdout_lines
+
+#    - name: perform show run
+#      ios_command:
+#        commands:
+#          - show run
+#         - show start
+#      register: output1
+#
+#    - name: print show run
+#      debug:
+#        var: output1.stdout_lines
