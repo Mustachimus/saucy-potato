@@ -17,7 +17,7 @@
 #      ios_command:
 #        commands:
 #          - show run
-#         - show start
+#          - show start
 #      register: output1
 #
 #    - name: print show run
