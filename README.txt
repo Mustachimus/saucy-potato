@@ -7,3 +7,11 @@ correct and the name resolves in DNS, it should work.  Internet connection neede
 
 Please be aware the cisco_config_diff.yml file requires -D option to work when running the playbook.
 You may see "var not defined" error if you don't.
+
+
+
+ansible-playbook -D cisco_config_diff.yml -i hosts.yml
+
+-D needed to run diff_against
+-i needed to specify hosts file
+ 
