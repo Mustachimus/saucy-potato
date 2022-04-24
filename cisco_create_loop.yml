@@ -1,27 +1,82 @@
 ---
+#refers to a variable in the hosts.yml
 - hosts: routers
+
+#enters enabled mode on Cisco device
   become: yes
 
+#Gather facts will connect to the managed host, run a script that collects a bunch of data, then 
+#it will populate the hostvars.  Not needed for this playbook so I've disabled it
+  gather_facts: no
+
   tasks:
-    - name: Create Loopback33
+    - name: Createy Createy
       cisco.ios.ios_interfaces:
         config:
-          - name: Loopback33
-            description: Ansible Andrew
+          - name: Loopback10
+            description: Ansible did this
             enabled: true
-#            ipv4: 192.168.333.33/32
+          - name: Loopback11
+            description: Ansible did this, too
+            enabled: true
+          - name: Loopback12
+            description: Ansible also did this
+            enabled: true
+          - name: Loopback33
+            description: Ansible hates me
+            enabled: true
+          - name: Loopback34
+            description: Ansible again
+            enabled: true
+
+    - name: Createy Createy L3
+      cisco.ios.ios_l3_interfaces:
+        config:
+        - name: Loopback10
+          ipv4:
+          - address: 192.168.10.10/32
+        - name: Loopback11
+          ipv4:
+          - address: 192.168.11.11/32
+        - name: Loopback12
+          ipv4:
+          - address: 192.168.12.12/32
+        - name: Loopback33
+          ipv4:
+          - address: 192.168.33.33/32
+        - name: Loopback34
+          ipv4:
+          - address: 192.168.34.34/32
 
 
-    - name: Add IP address to L44
-      cisco.ios.ios_l3_interface:
-        name: Loopback44
-        ipv4: 192.168.44.44/32
+#    - name: Deletey Deletey
+#      cisco.ios.ios_interfaces:
+#        config:
+#          - name: Loopback10
+#          - name: Loopback11
+#          - name: Loopback12
+#          - name: Loopback33
+#          - name: Loopback34
+#        state: deleted
+#
+#
+#    - name: Deletey Deletey L3
+#      cisco.ios.ios_l3_interfaces:
+#        config:
+#        - name: Loopback10
+#        - name: Loopback11
+#        - name: Loopback12
+#        - name: Loopback33
+#        - name: Loopback34
+#        state: deleted
 
-    - name: perform show run
+
+    - name: show stuff
       ios_command:
         commands:
-          - show run
-#         - show start
+          - show run | sec interfaces
+          - show ip int brief
+          - show int des
       register: output1
 
     - name: print show run
